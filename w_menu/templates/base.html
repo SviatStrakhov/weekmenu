@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>EasyCheck - {% block meta_title %}{% endblock meta_title %}</title>
+        <meta name="description" value="weekmenu" />
+        <!-- Include Styles -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/main.css">
+        {% block extra_css %}{% endblock extra_css %}
+    </head>
+    <body>
+
+        <!-- Start Container -->
+        <div class="container">
+
+            <!-- Start Header -->
+            <div class="row" id="header">
+                <!-- Logo -->
+                <div class="col-xs-8">
+                    <a href="{% url 'home'%}"><h1>weekmenu</h1></a>
+                </div>
+            </div>
+
+            <!-- Start SubHeader -->
+            <div class="row" id="sub-header">
+                <div class="col-xs-12">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation"><a href="#" class="active">Menu</a></li>
+                        <li role="presentation"><a href="{% url 'products' %}">Products</a></li>
+                        <li role="presentation" ><a href="{% url 'shoping_list' %}">ShopingList</a></li>
+                        <li role="presentation" ><a href="{% url 'admin:index' %}">ADMIN</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Start Main Page Content -->
+            <div class="row" id="content-columns">
+                <div class="col-xs-12" id="content-column">
+                    <h2>{% block title %}{% endblock title %}</h2>
+                    {% block content %}{% endblock content %}
+                </div>
+                <div class="col-xs-6" id="content-column"></div>
+            </div>
+
+            <!-- Start Footer -->
+            <div class="row" id="footer">
+                <div class="col-xs-12">&copy; 2017 WeekMenu</div>
+            </div>
+        </div>
+
+        <!-- Javascripts Section -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" ></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% block extra_js %}{% endblock extra_js %}
+    </body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block meta_title %}Shoping List{% endblock meta_title %}
+{% block title %}Shoping List{% endblock title %}
+
+{% block content %}
+<div class="col-xs-6">
+    <button type="button" class="btn btn-warning">Create menu</button>
+    <button type="button" class="btn btn-danger">Add dish to actual menu</button>
+    <!--<button type="button" class="btn btn-success">Order</button>-->
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th><a href="#">№</a> </th>
+                <th><a href="#">Product</a></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td><a title="" href="#">{{ product.title }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

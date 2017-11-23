@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from w_menu.views import homepage, products, shoping_list
 
 urlpatterns = [
+
+    url(r'^$', homepage, name='home'),
+    url(r'^products/$', products, name='products'),
+    url(r'^shoping_list/$', shoping_list, name='shoping_list'),
+
     url(r'^admin/', admin.site.urls),
 ]
