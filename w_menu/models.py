@@ -54,3 +54,24 @@ class Dish(models.Model):
     
     def __str__(self):
         return f'{self.title}'
+
+
+# dont migration Menu
+class Menu(models.Model):
+
+    class Meta(object):
+
+        verbose_name = 'Menu'
+        verbose_name_plural = 'Menu'
+
+    title = models.CharField(
+        max_length=256,
+        blank=False,
+        verbose_name='title'
+    )
+
+    dish = models.ManyToManyField(Dish,
+        max_length=256,
+        blank=True,
+        verbose_name='dish'
+    )
