@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.core.exceptions import ObjectDoesNotExist
+
 from .models import Dish, Product
 
 
@@ -14,7 +16,10 @@ def homepage(request):
 class ProductsView(ListView):
 
     template_name = 'products.html'
-    queryset = Product.objects.filter(available=True)
+    try:
+        queryset = Product.objects.filter(available=True)
+    except ObjectDoesNotExist:
+        pass
 
 # def products(request):
 #     products = Product.objects.filter(available=True)

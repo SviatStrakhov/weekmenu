@@ -13,10 +13,11 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from w_menu.views import homepage, ProductsView, ShopingListView, ProductCreate
-
+from django.contrib.auth import views as auth_views
+from django.views.generic.base import RedirectView
 urlpatterns = [
 
     url(r'^$', homepage, name='home'),
@@ -24,5 +25,10 @@ urlpatterns = [
     url(r'^shoping_list/$', ShopingListView.as_view(), name='shoping_list'),
     url(r'^products/add_product/$', ProductCreate.as_view(), name='add_product'),
 
+    # related urls
+    url(r'^user/logout/$', auth_views.logout, kwargs= {'next_page': 'home'}, name='auth_logout'),
+    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
+    url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
+    # admin urls
     url(r'^admin/', admin.site.urls),
 ]
