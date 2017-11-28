@@ -29,6 +29,8 @@ urlpatterns = [
     url(r'^user/logout/$', auth_views.logout, kwargs= {'next_page': 'home'}, name='auth_logout'),
     url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
+    # url(r'^users/', include('registration.backends.default.urls', namespace='users')),
+
     # admin urls
     url(r'^admin/', admin.site.urls),
 ]
