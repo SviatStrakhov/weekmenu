@@ -24,13 +24,13 @@
                 {% if user.is_authenticated %}
 
                 <div class="col-xs-2" id="user-toolbar"> <span>{{ user.username }}</span> |
-                    <a href="{% url "users:auth_logout" %}">Logout</a>
+                    <a href="{% url 'users:auth_logout' %}">Logout</a>
                 </div>
 
                 {% else %}
 
                 <div class="col-xs-6" id="user-toolbar">
-                    <a href="{% url "users:auth_login" %}">Login</a> | <a href="{% url "users:registration_register" %}">Register</a>
+                    <a href="{% url 'users:auth_login' %}">Login</a> | <a href="{% url 'users:registration_register' %}">Registration</a>
                 </div>
 
                 {% endif %}
@@ -53,6 +53,7 @@
             <div class="row" id="content-columns">
                 <div class="col-xs-12" id="content-column">
                     <h2>{% block title %}{% endblock title %}</h2>
+                    {% block status_message %}{% endblock status_message %}
                     {% block content %}{% endblock content %}
                 </div>
                 <div class="col-xs-6" id="content-column"></div>
