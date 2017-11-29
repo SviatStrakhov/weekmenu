@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 from w_menu.views import homepage, ProductsView, ShopingListView, ProductCreate
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
@@ -29,7 +30,6 @@ urlpatterns = [
     url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
     url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
-    # url(r'^users/', include('registration.backends.default.urls', namespace='users')),
 
     # admin urls
     url(r'^admin/', admin.site.urls),

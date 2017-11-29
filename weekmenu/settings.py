@@ -119,6 +119,10 @@ USE_TZ = True
 
 REGISTRATION_OPEN = True
 
+LOGIN_URL = 'users:auth_login'
+
+LOGOUT_URL = 'users:auth_logout'
+
 
 
 # Static files (CSS, JavaScript, Images)
