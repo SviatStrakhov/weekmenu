@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 from django.core.exceptions import ObjectDoesNotExist
@@ -41,9 +41,19 @@ class ShopingListView(ListView):
     template_name = 'shoping_list.html'
     queryset = Product.objects.filter(available=False)
 
-# def shoping_list(request):
-#     products = Product.objects.filter(available=False)
-#     return render(request, 'shoping_list.html', {'products': products})
+    def get_context_data(self, **kwargs):
+        context = super(ShopingListView, self).get_context_data(**kwargs)
+        update_url = reverse('shoping_list')
+        products = []
+        # products.append({
+        #     'product': product.title,
+        #     'id': product.id,
+        #     'update_url': update_url,
+        # })
+        return context
+
+    def post(self, request, *args, **kwargs):
+        return JsonResponse({'key': 'value'})
 
 
 class ProductCreate(CreateView):

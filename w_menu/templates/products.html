@@ -3,6 +3,11 @@
 {% block title %}Products{% endblock title %}
 
 {% block content %}
+{% if not object_list %}
+<div class="alert alert-warning">
+Products are absent. Please, adв<a href="{% url 'add_product' %}">Add product</a>
+</div>
+{% else %}
 <div class="col-xs-6">
     <a href="{% url 'add_product' %}"> <button type="button" class="btn btn-warning">Add product</button> </a>
     <!--<button type="button" class="btn btn-success">Order</button>-->

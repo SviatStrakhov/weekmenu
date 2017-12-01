@@ -12,13 +12,21 @@
             <tr>
                 <th><a href="#">№</a> </th>
                 <th><a href="#">Product</a></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
+
+        {% csrf_token %}
+
         {% for product in object_list %}
         <tr>
             <td>{{ forloop.counter }}</td>
             <td><a title="" href="#">{{ product.title }}</td>
+            <td class="available-box">
+                <input type="checkbox" data-product-id="{{ product.id }}" data-url="#"
+                value="1" {% if product.available %} checked="checked" {% endif %}/>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
