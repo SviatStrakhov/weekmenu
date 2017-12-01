@@ -53,7 +53,13 @@ class ShopingListView(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        return JsonResponse({'key': 'value'})
+        data = request.POST
+        available = data['available'] and True or False
+        product = Product.objects.get(pk=data['pk'])
+        product.available = available
+        product.save()
+
+        return JsonResponse({'status': 'success'})
 
 
 class ProductCreate(CreateView):

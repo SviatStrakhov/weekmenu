@@ -7,7 +7,7 @@ function initProduct() {
         'dataType': 'json',
         'data': {
         	'pk': box.data('product-id'),
-        	'present': box.is(':checked') ? '1': '',
+        	'available': box.is(':checked') ? '1': '',
         	'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
         },
         'error': function(xhr, status, error){
