@@ -11,9 +11,17 @@ from .models import Dish, Product
 
 
 # Create your views here.
-@login_required
-def homepage(request):
-    return render(request, 'base.html')
+# @login_required
+# def homepage(request):
+#     return render(request, 'base.html')
+
+class HomePageView(TemplateView):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(HomePageView, self).dispatch(*args, **kwargs)
+
+    template_name = 'base.html'
 
 
 class ProductsView(ListView):
