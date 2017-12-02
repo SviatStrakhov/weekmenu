@@ -10,11 +10,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Dish, Product
 
 
-# Create your views here.
-# @login_required
-# def homepage(request):
-#     return render(request, 'base.html')
-
 class HomePageView(TemplateView):
 
     @method_decorator(login_required)
@@ -36,9 +31,6 @@ class ProductsView(ListView):
     except ObjectDoesNotExist:
         pass
 
-# def products(request):
-#     products = Product.objects.filter(available=True)
-#     return render(request, 'products.html', {'products': products})
 
 class ShopingListView(ListView):
 
