@@ -9,37 +9,33 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Dish, Product
 
-
+@method_decorator(login_required, name='dispatch')
 class HomePageView(TemplateView):
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(HomePageView, self).dispatch(*args, **kwargs)
+    # @method_decorator(login_required)
+    # def dispatch(self, *args, **kwargs):
+    #     return super(HomePageView, self).dispatch(*args, **kwargs)
 
     template_name = 'base.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class ProductsView(ListView):
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ProductsView, self).dispatch(*args, **kwargs)
-
     template_name = 'products.html'
+    ordering = ['title']
+
     try:
         queryset = Product.objects.filter(available=True)
     except ObjectDoesNotExist:
         pass
 
-
+@method_decorator(login_required, name='dispatch')
 class ShopingListView(ListView):
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(ShopingListView, self).dispatch(*args, **kwargs)
 
     template_name = 'shoping_list.html'
     queryset = Product.objects.filter(available=False)
+    ordering = ['title']
 
     def get_context_data(self, **kwargs):
         context = super(ShopingListView, self).get_context_data(**kwargs)
