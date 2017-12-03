@@ -24,6 +24,7 @@ class ProductsView(ListView):
 
     template_name = 'products.html'
     ordering = ['title']
+    paginate_by = 10
 
     try:
         queryset = Product.objects.filter(available=True)

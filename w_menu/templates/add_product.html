@@ -7,7 +7,7 @@
 {% block content %}
 
 <div class="col-xs-5" id="content-column">
-	<form action="{% url 'users:registration_register' %}" method="post">
+	<form action="{% url 'add_product' %}" method="post">
 		{% csrf_token %}
 		{{ form|bootstrap }}
 		<input type="submit" value="Submit" class="btn btn-primary"/>
