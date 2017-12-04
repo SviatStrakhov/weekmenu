@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block meta_title %}Products{% endblock meta_title %}
 {% block title %}Products{% endblock title %}
+{% block extra_js %}
+    <script>
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+    </script>
+{% endblock %}
 
 {% block content %}
 {% if not object_list %}
@@ -11,45 +24,19 @@ Products are absent. Please, adв<a href="{% url 'add_product' %}">Add product</
 <div class="col-xs-6">
     <a href="{% url 'add_product' %}"> <button type="button" class="btn btn-warning">Add product</button> </a>
     <!--<button type="button" class="btn btn-success">Order</button>-->
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th><a href="#">№</a> </th>
-                <th><a href="#">Product</a></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <div class="infinite-container">
-                {% for product in object_list %}
-                <div class="infinite-item">
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td><a title="" href="#">{{ product.title }}</td>
-                        <td><button type="button" class="btn btn-danger">Finished</button></td>
-                    </tr>
-                </div>
-                {% endfor %}
-            </div>
-        </tbody>
-    </table>
+    <div class="infinite-container">
+        {% for product in products %}
+          <div class="infinite-item">
+            <h1>{{ product.title }}</h1>
+          </div>
+        {% endfor %}
+    </div>
     <div class="loading" style="display: none;">
     Loading...
     </div>
 
 {% endif %}
     {% if page_obj.has_next %}
-    <a class="infinite-more-link" href="?page={{ articles.next_page_number }}">More</a>
+    <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
     {% endif %}
-<script>
-    var infinite = new Waypoint.Infinite({
-      element: $('.infinite-container')[0],
-      onBeforePageLoad: function () {
-        $('.loading').show();
-      },
-      onAfterPageLoad: function ($items) {
-        $('.loading').hide();
-      }
-    });
-</script>
 {% endblock content %}
