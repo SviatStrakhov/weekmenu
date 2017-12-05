@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
-{% block meta_title %}Shoping List{% endblock meta_title %}
-{% block title %}Shoping List{% endblock title %}
+{% block meta_title %}shopping List{% endblock meta_title %}
+{% block title %}shopping List{% endblock title %}
 
 {% block content %}
 <div class="col-xs-6">
@@ -24,7 +24,7 @@
             <td>{{ forloop.counter }}</td>
             <td><a title="" href="#">{{ product.title }}</td>
             <td class="available-box">
-                <input type="checkbox" data-product-id="{{ product.id }}" data-url="#"
+                <input type="checkbox" data-product-id="{{ product.id }}" data-url="{{ update_url }}"
                 value="1" {% if product.available %} checked="checked" {% endif %}/>
             </td>
         </tr>
