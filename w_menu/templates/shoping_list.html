@@ -24,7 +24,7 @@
             <td>{{ forloop.counter }}</td>
             <td><a title="" href="#">{{ product.title }}</td>
             <td class="available-box">
-                <input type="checkbox" data-product-id="{{ product.id }}" data-url="#"
+                <input type="checkbox" data-product-id="{{ product.id }}" data-url="{{ update_url }}"
                 value="1" {% if product.available %} checked="checked" {% endif %}/>
             </td>
         </tr>
