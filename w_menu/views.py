@@ -32,21 +32,21 @@ class ProductsView(ListView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ShopingListView(ListView):
+class ShoppingListView(ListView):
 
-    template_name = 'shoping_list.html'
+    template_name = 'shopping_list.html'
     queryset = Product.objects.filter(available=False)
     ordering = ['title']
 
     def get_context_data(self, **kwargs):
-        context = super(ShopingListView, self).get_context_data(**kwargs)
-        update_url = reverse('shoping_list')
+        context = super(ShoppingListView, self).get_context_data(**kwargs)
+        # update_url = reverse('shopping_list')
         # products.append({
         #     'product': product.title,
         #     'id': product.id,
         #     'update_url': update_url,
         # })
-        context['update_url'] = update_url
+        # context['update_url'] = update_url
         return context
 
     def post(self, request, *args, **kwargs):

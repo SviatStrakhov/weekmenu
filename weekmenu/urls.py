@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from w_menu.views import HomePageView, ProductsView, ShopingListView, ProductCreate
+from w_menu.views import HomePageView, ProductsView, ShoppingListView, ProductCreate
 from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView, TemplateView
 urlpatterns = [
 
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^products/$', ProductsView.as_view(), name='products'),
-    url(r'^shoping_list/$', ShopingListView.as_view(), name='shoping_list'),
+    url(r'^shopping_list/$', ShoppingListView.as_view(), name='shopping_list'),
     url(r'^products/add_product/$', ProductCreate.as_view(), name='add_product'),
 
     # related urls

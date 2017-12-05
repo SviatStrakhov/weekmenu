@@ -1,6 +1,8 @@
 function initProduct() {
     $('.available-box input[type="checkbox"]').click(function(event){
         var box = $(this);
+        var productToHide = box.parent().parent()
+        productToHide.hide()
         $.ajax(box.data('url'), {
 	        'type': 'POST',
 	        'async': true,
@@ -13,8 +15,8 @@ function initProduct() {
 	        'error': function(xhr, status, error){
 	        	alert('error');
 	        },
-	        'succes': function(data, status, xhr){
-	        	alert(data);
+	        'success': function(data, status, xhr){
+	        	alert(data['key']);
 	        }
     	});
   	});
