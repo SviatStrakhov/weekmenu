@@ -7,29 +7,22 @@
     <button type="button" class="btn btn-warning">Create menu</button>
     <button type="button" class="btn btn-danger">Add dish to actual menu</button>
     <!--<button type="button" class="btn btn-success">Order</button>-->
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr>
-                <th><a href="#">№</a> </th>
-                <th><a href="#">Product</a></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-
         {% csrf_token %}
 
+<div class="col-xs-12">
+    <div class="infinite-container">
         {% for product in object_list %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td><a title="" href="#">{{ product.title }}</td>
-            <td class="available-box">
-                <input type="checkbox" data-product-id="{{ product.id }}" data-url="#"
-                value="1" {% if product.available %} checked="checked" {% endif %}/>
-            </td>
-        </tr>
+        <div class="infinite-item">
+            <h1><input type="checkbox" id=big_checkbox data-product-id="{{ product.id }}" data-url="#"
+                value="1" {% if product.available %} checked="checked" {% endif %}/>{{ product.title }}</button></h1>
+        </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </div>
+    <div class="loading" style="display: none;">
+        Loading...
+    </div>
+    {% if page_obj.has_next %}
+    <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
+    {% endif %}
 </div>
 {% endblock content %}

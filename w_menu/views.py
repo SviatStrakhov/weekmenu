@@ -23,12 +23,11 @@ class ProductsView(ListView):
     template_name = 'products.html'
     ordering = ['title']
     paginate_by = 3
-    context_object_name = 'products'
 
-    # try:
-    #     queryset = Product.objects.filter(available=True)
-    # except ObjectDoesNotExist:
-    #     pass
+    try:
+        queryset = Product.objects.filter(available=True)
+    except ObjectDoesNotExist:
+        pass
 
 @method_decorator(login_required, name='dispatch')
 class ShopingListView(ListView):

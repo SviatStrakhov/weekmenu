@@ -25,18 +25,18 @@ Products are absent. Please, adв<a href="{% url 'add_product' %}">Add product</
     <a href="{% url 'add_product' %}"> <button type="button" class="btn btn-warning">Add product</button> </a>
     <!--<button type="button" class="btn btn-success">Order</button>-->
     <div class="infinite-container">
-        {% for product in products %}
-          <div class="infinite-item">
-            <h1>{{ product.title }}</h1>
-          </div>
+        {% for product in object_list %}
+        <div class="infinite-item">
+            <h1>{{ product.title }}</button></h1>
+        </div>
         {% endfor %}
     </div>
     <div class="loading" style="display: none;">
-    Loading...
+        Loading...
     </div>
-
 {% endif %}
     {% if page_obj.has_next %}
     <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a>
     {% endif %}
+</div>
 {% endblock content %}
