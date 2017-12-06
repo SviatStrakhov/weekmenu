@@ -15,7 +15,8 @@ class Product(models.Model):
     title = models.CharField(
         max_length=256,
         blank=True,
-        verbose_name='product'
+        unique=True,
+        verbose_name='title'
     )
 
     available = models.BooleanField(

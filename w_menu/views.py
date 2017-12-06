@@ -9,12 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Dish, Product
 
+
 @method_decorator(login_required, name='dispatch')
 class HomePageView(TemplateView):
-
-    # @method_decorator(login_required)
-    # def dispatch(self, *args, **kwargs):
-    #     return super(HomePageView, self).dispatch(*args, **kwargs)
 
     template_name = 'base.html'
 
@@ -22,8 +19,10 @@ class HomePageView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class ProductsView(ListView):
 
+    model = Product
     template_name = 'products.html'
     ordering = ['title']
+    paginate_by = 3
 
     try:
         queryset = Product.objects.filter(available=True)

@@ -3,3 +3,9 @@
     margin-top: 30px;
     text-alighn: right
 }
+
+#big_checkbox{
+    width: 20px;
+    height: 20px;
+    margin-right: 20px;
+}
