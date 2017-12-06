@@ -25,7 +25,7 @@
     <div class="col-xs-12">
         <div class="infinite-container">
             {% for product in object_list %}
-            <div class="infinite-item">
+            <div class="infinite-item available-box">
                 <h1><input type="checkbox" id=big_checkbox data-product-id="{{ product.id }}" data-url="#"
                     value="1" {% if product.available %} checked="checked" {% endif %}/>{{ product.title }}
                 </h1>

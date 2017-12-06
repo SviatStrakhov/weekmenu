@@ -19,7 +19,6 @@ class HomePageView(TemplateView):
 @method_decorator(login_required, name='dispatch')
 class ProductsView(ListView):
 
-    model = Product
     template_name = 'products.html'
     ordering = ['title']
     paginate_by = 3
@@ -36,7 +35,11 @@ class ShoppingListView(ListView):
     template_name = 'shopping_list.html'
     ordering = ['title']
     paginate_by = 3
-    queryset = Product.objects.filter(available=False)
+
+    try:
+        queryset = Product.objects.filter(available=False)
+    except ObjectDoesNotExist:
+        pass
 
 
     def get_context_data(self, **kwargs):
@@ -53,7 +56,7 @@ class ShoppingListView(ListView):
     def post(self, request, *args, **kwargs):
         data = request.POST
         available = data['available'] and True or False
-        product = Product.objects.get(pk=data['pik'])
+        product = Product.objects.get(pk=data['pk'])
         product.available = available
         product.save()
 
