@@ -34,8 +34,10 @@ class ProductsView(ListView):
 class ShoppingListView(ListView):
 
     template_name = 'shopping_list.html'
-    queryset = Product.objects.filter(available=False)
     ordering = ['title']
+    paginate_by = 3
+    queryset = Product.objects.filter(available=False)
+
 
     def get_context_data(self, **kwargs):
         context = super(ShoppingListView, self).get_context_data(**kwargs)
@@ -51,7 +53,7 @@ class ShoppingListView(ListView):
     def post(self, request, *args, **kwargs):
         data = request.POST
         available = data['available'] and True or False
-        product = Product.objects.get(pk=data['pk'])
+        product = Product.objects.get(pk=data['pik'])
         product.available = available
         product.save()
 

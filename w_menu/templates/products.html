@@ -18,7 +18,7 @@
 {% block content %}
 {% if not object_list %}
 <div class="alert alert-warning">
-    Products are absent. Please, adв<a href="{% url 'add_product' %}">Add product</a>
+    Products are absent. Please, <a href="{% url 'add_product' %}">Add product</a>
 </div>
 {% else %}
 <div class="col-xs-6">
@@ -27,7 +27,7 @@
     <div class="infinite-container">
         {% for product in object_list %}
         <div class="infinite-item">
-            <h1>{{ product.title }}</button></h1>
+            <h1>{{ product.title }}</h1>
         </div>
         {% endfor %}
     </div>
