@@ -23,8 +23,7 @@
         {% for product in object_list %}
         <tr>
             <td class="available-box">
-                <input type="checkbox" id="big_checkbox" data-product-id="{{ product.id }}" data-url="{{ update_url }}"
-                value="1" {% if product.available %} checked="checked" {% endif %}/>
+                <input type="checkbox" id="big_checkbox" data-product-id="{{ product.id }}"/>
             </td>
             <td><a title="" href="#"><h3>{{ product.title }}</h3></a></td>
         </tr>

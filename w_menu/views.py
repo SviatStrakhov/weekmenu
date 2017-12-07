@@ -28,6 +28,16 @@ class ProductsView(ListView):
     except ObjectDoesNotExist:
         pass
 
+    def post(self, request, *args, **kwargs):
+        data = request.POST
+        product = Product.objects.get(pk=data['pk'])
+        print(product.available)
+        product.available = False
+        print(product.available)
+        product.save()
+
+        return JsonResponse({'status': 'success'})
+
 
 @method_decorator(login_required, name='dispatch')
 class ShoppingListView(ListView):
@@ -40,18 +50,6 @@ class ShoppingListView(ListView):
         queryset = Product.objects.filter(available=False)
     except ObjectDoesNotExist:
         pass
-
-
-    def get_context_data(self, **kwargs):
-        context = super(ShoppingListView, self).get_context_data(**kwargs)
-        # update_url = reverse('shopping_list')
-        # products.append({
-        #     'product': product.title,
-        #     'id': product.id,
-        #     'update_url': update_url,
-        # })
-        # context['update_url'] = update_url
-        return context
 
     def post(self, request, *args, **kwargs):
         data = request.POST

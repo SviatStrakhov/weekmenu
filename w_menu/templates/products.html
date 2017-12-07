@@ -19,10 +19,15 @@
             </tr>
         </thead>
         <tbody>
+
+        {% csrf_token %}
+
         {% for product in object_list %}
         <tr>
             <td><a title="" href="#"><h3>{{ product.title }}</h3></a></td>
-            <td><button type="button" class="btn btn-danger">Finished</button></td>
+            <td class="available-box">
+                <button type="button" id="finish_product_btn" data-product-id="{{ product.id }}" class="btn btn-danger">Finished</button>
+            </td>
         </tr>
         {% endfor %}
         </tbody>
