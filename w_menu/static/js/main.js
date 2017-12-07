@@ -5,15 +5,15 @@ function finishProduct(){
 		var productToHide = box.parent().parent()
         productToHide.hide()
 		$.ajax(box.data('url'), {
-			'type': 'POST',
-			'async': true,
-			'dataType': 'json',
-			'data': {
+			type: 'POST',
+			async: true,
+			dataType: 'json',
+			data: {
 				'pk': box.data('product-id'),
 				'submit': true,
 				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
 			},
-			'error': function(xhr, status, error){
+			error: function(xhr, status, error){
 	        	alert('error');
 	        },
 		});
@@ -35,7 +35,7 @@ function initProduct() {
 	        'dataType': 'json',
 	        'data': {
 	        	'pk': box.data('product-id'),
-	        	'available': box.is(':checked') ? '1': '',
+	        	'available': box.is(':checked'),
 	        	'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
 	        },
 	        'error': function(xhr, status, error){

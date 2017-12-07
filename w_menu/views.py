@@ -31,9 +31,7 @@ class ProductsView(ListView):
     def post(self, request, *args, **kwargs):
         data = request.POST
         product = Product.objects.get(pk=data['pk'])
-        print(product.available)
         product.available = False
-        print(product.available)
         product.save()
 
         return JsonResponse({'status': 'success'})
@@ -53,8 +51,8 @@ class ShoppingListView(ListView):
 
     def post(self, request, *args, **kwargs):
         data = request.POST
-        available = data['available'] and True or False
         product = Product.objects.get(pk=data['pk'])
+        available = False if product.available else True
         product.available = available
         product.save()
 
