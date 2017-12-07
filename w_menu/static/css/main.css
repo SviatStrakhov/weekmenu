@@ -7,5 +7,9 @@
 #big_checkbox{
     width: 20px;
     height: 20px;
-    margin-right: 20px;
+    margin-top: 20px;
+    margin-left:10px;
+}
+.btn{
+    margin-top: 15px;
 }

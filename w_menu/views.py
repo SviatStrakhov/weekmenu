@@ -21,7 +21,7 @@ class ProductsView(ListView):
 
     template_name = 'products.html'
     ordering = ['title']
-    paginate_by = 3
+    paginate_by = 15
 
     try:
         queryset = Product.objects.filter(available=True)
@@ -34,7 +34,7 @@ class ShoppingListView(ListView):
 
     template_name = 'shopping_list.html'
     ordering = ['title']
-    paginate_by = 3
+    paginate_by = 15
 
     try:
         queryset = Product.objects.filter(available=False)
