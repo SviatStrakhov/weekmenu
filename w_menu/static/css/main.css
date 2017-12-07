@@ -1,15 +1,21 @@
 #user-toolbar {
     float: right;
     margin-top: 30px;
-    text-alighn: right
+    margin-bottom: 30px;
+    text-alighn: right;
 }
 
 #big_checkbox{
-    width: 20px;
-    height: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left:10px;
 }
-.btn{
-    margin-top: 15px;
+#logo{
+    margin-top: 30px;
+}
+#sub_title{
+    margin-bottom: 30px;
+    margin-left: 10px;
+}
+a:hover{
+    text-decoration: none;
 }
