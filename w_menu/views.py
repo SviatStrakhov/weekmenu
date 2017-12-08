@@ -21,7 +21,7 @@ class ProductsListView(ListView):
 
     template_name = 'products.html'
     ordering = ['title']
-    paginate_by = 15
+    paginate_by = 30
 
     try:
         queryset = Product.objects.filter(available=True)
@@ -42,7 +42,7 @@ class ShoppingListView(ListView):
 
     template_name = 'shopping_list.html'
     ordering = ['title']
-    paginate_by = 15
+    paginate_by = 30
 
     try:
         queryset = Product.objects.filter(available=False)
@@ -75,9 +75,42 @@ class ProductNotesUpdateView(UpdateView):
     success_url = '/products'
 
 
-class ShoppinProductNotesUpdateView(UpdateView):
+class ShoppingProductNotesUpdateView(UpdateView):
 
     model = Product
     fields = ['notes']
     template_name = 'product_notes_edit.html'
     success_url = '/shopping_list'
+
+
+# def test_request(request):
+#     a = "<WSGIRequest: GET '/shopping_list/'>"
+#     print(request)
+#     if 'shopping_list' in str(request):
+#         print('/shopping_list/')
+#     else:
+#         print('zopa')
+#     return render(request, 'base.html')
+
+
+class MenuView (ListView):
+
+    template_name = 'menu.html'
+    queryset = Dish.objects.all()
+
+
+class DishCreate(CreateView):
+
+    model = Dish
+    fields = ['title', 'product']
+    template_name = 'add_dish.html'
+    success_url = '/menu'
+
+
+class DishCompositionView(UpdateView):
+
+    model = Dish
+    fields = ['product']
+    template_name = 'dish_composition.html'
+    success_url = '/products'
+

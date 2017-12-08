@@ -1,17 +1,30 @@
 {% extends 'base.html' %}
-{% block meta_title %}Cashier{% endblock meta_title %}
-{% block title %}{{ date }}{% endblock title %}
-
+{% block meta_title %}Products{% endblock meta_title %}
+{% block title %}Menu{% endblock title %}
 
 {% block content %}
-
+<!--{% if not object_list %}-->
+<!--<div class="alert alert-warning">-->
+    <!--Products are absent. Please, <a href="{% url 'add_product' %}">Add product</a>-->
+<!--</div>-->
+<!--{% else %}-->
 <div class="col-xs-6">
+    <a href="{% url 'add_dish' %}"> <button type="button" class="btn btn-warning">Add dish</button> </a>
+    <!--<button type="button" class="btn btn-success">Order</button>-->
+    <table class="table table-hover">
+        <thead>
+        </thead>
+        <tbody>
 
-<button type="button" class="btn btn-warning">Create menu</button>
+        {% csrf_token %}
 
-<button type="button" class="btn btn-danger">Add dish to actual menu</button>
-
-<!--<button type="button" class="btn btn-success">Order</button>-->
-
+        {% for dish in object_list %}
+        <tr>
+            <td><a title="" href="{% url 'dish_composition' dish.id %}"><h3>{{ dish.title }}</h3></a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
+{% endif %}
 {% endblock content %}

@@ -22,12 +22,17 @@ from django.views.generic.base import RedirectView, TemplateView
 urlpatterns = [
 
     url(r'^$', HomePageView.as_view(), name='home'),
-    url(r'^products/$', ProductsListView.as_view(), name='products'),
     url(r'^shopping_list/$', ShoppingListView.as_view(), name='shopping_list'),
-    url(r'^shopping_list/(?P<pk>\d+)/notes/edit$', ShoppinProductNotesUpdateView.as_view(),
+    url(r'^shopping_list/(?P<pk>\d+)/notes/edit$', ShoppingProductNotesUpdateView.as_view(),
         name='shopping_list_product_edit'),
+
+    url(r'^products/$', ProductsListView.as_view(), name='products'),
     url(r'^products/(?P<pk>\d+)/notes/edit$', ProductNotesUpdateView.as_view(), name='product_notes_edit'),
     url(r'^products/add_product/$', ProductCreate.as_view(), name='add_product'),
+
+    url(r'^menu/$', MenuView.as_view(), name='menu'),
+    url(r'^menu/dish/add/$', DishCreate.as_view(), name='add_dish'),
+    url(r'^menu/dish/(?P<pk>\d+)/edit/$', DishCompositionView.as_view(), name='dish_composition'),
 
     # related urls
     url(r'^users/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')),
