@@ -17,7 +17,7 @@ class HomePageView(TemplateView):
 
 
 @method_decorator(login_required, name='dispatch')
-class ProductsView(ListView):
+class ProductsListView(ListView):
 
     template_name = 'products.html'
     ordering = ['title']
@@ -65,3 +65,19 @@ class ProductCreate(CreateView):
     fields = ['title', 'available', 'notes']
     template_name = 'add_product.html'
     success_url = '/products'
+
+
+class ProductNotesUpdateView(UpdateView):
+
+    model = Product
+    fields = ['notes']
+    template_name = 'product_notes_edit.html'
+    success_url = '/products'
+
+
+class ShoppinProductNotesUpdateView(UpdateView):
+
+    model = Product
+    fields = ['notes']
+    template_name = 'product_notes_edit.html'
+    success_url = '/shopping_list'

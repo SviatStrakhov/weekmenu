@@ -11,10 +11,6 @@
 
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
         </thead>
         <tbody>
 
@@ -23,9 +19,9 @@
         {% for product in object_list %}
         <tr>
             <td class="available-box">
-                <input type="checkbox" id="big_checkbox" data-product-id="{{ product.id }}"/>
+                <input type="checkbox"  id="big_checkbox" data-product-id="{{ product.id }}"/>
             </td>
-            <td><a title="" href="#"><h3>{{ product.title }}</h3></a></td>
+            <td><a title="" href="{% url 'shopping_list_product_edit' product.id %}"><h3>{{ product.title }}</h3></a></td>
         </tr>
         {% endfor %}
         </tbody>
