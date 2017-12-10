@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, ListView
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -107,10 +107,21 @@ class DishCreate(CreateView):
     success_url = '/menu'
 
 
-class DishCompositionView(UpdateView):
+class DishCompositionView(ListView):
 
-    model = Dish
-    fields = ['product']
+    model = Dish, Product
     template_name = 'dish_composition.html'
-    success_url = '/products'
+
+    def get_queryset(self):
+        data = Product.objects.filter(dish__id=self.kwargs['pk'])
+        return data
+
+    def get_context_data(self, **kwargs):
+        context = super(DishCompositionView, self).get_context_data(**kwargs)
+        data = Dish.objects.filter(id=self.kwargs['pk'])
+        context['data'] = data
+        return context
+
+    def post(self, request, *args, **kwargs):
+        data = request.POST
 
