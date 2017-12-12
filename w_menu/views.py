@@ -83,6 +83,13 @@ class ShoppingProductNotesUpdateView(UpdateView):
     success_url = '/shopping_list'
 
 
+# class DishProductNotesUpdateView(UpdateView):
+#
+#     model = Product
+#     fields = ['notes']
+#     template_name = 'product_notes_edit.html'
+#     success_url = '/menu/dish/1/edit/'
+
 # def test_request(request):
 #     a = "<WSGIRequest: GET '/shopping_list/'>"
 #     print(request)
@@ -119,6 +126,7 @@ class DishCompositionView(ListView):
     def get_context_data(self, **kwargs):
         context = super(DishCompositionView, self).get_context_data(**kwargs)
         data = Dish.objects.filter(id=self.kwargs['pk'])
+
         context['data'] = data
         return context
 

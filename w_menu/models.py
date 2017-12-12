@@ -57,7 +57,7 @@ class Dish(models.Model):
         return f'{self.title}'
 
 
-# dont migration Menu
+# don't migrated Menu
 class Menu(models.Model):
 
     class Meta(object):
@@ -76,3 +76,26 @@ class Menu(models.Model):
         blank=True,
         verbose_name='dish'
     )
+
+
+class DishComposition(models.Model):
+
+    class Meta(object):
+
+        verbose_name = 'DishComposition'
+        verbose_name_plural = 'DishCompositions'
+
+    dish = models.ForeignKey(Dish,
+        verbose_name='Dish',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+
+    product = models.ForeignKey(Product,
+        verbose_name='Product',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+    )
+
