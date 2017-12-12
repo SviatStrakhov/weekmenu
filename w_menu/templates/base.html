@@ -26,13 +26,13 @@
 
                 <div class="col-xs-2" id="user-toolbar">
                     <a href="{% url 'profile' %}"> {{ user.username }} </a>|
-                    <a href="{% url 'users:auth_logout' %}">Logout</a>
+                    <a href="#">Logout</a>
                 </div>
 
                 {% else %}
 
                 <div class="col-xs-6" id="user-toolbar">
-                    <a href="{% url 'users:auth_login' %}">Login</a> | <a href="{% url 'users:registration_register' %}">Registration</a>
+                    <a href="#">Login</a> | <a href="#">Registration</a>
                 </div>
 
                 {% endif %}

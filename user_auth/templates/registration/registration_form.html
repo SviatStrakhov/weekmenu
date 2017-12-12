@@ -1,50 +1,27 @@
-{% extends 'base.html' %}
-{% block meta_title %}Register Form{% endblock meta_title %}
-{% block title %}Register Form{% endblock title %}
-
-
-{% block status_message %}
-{% if form.errors %}
-<div class="alert alert-warning" role="alert">Please, correct the following errors. {{ form.non_field_errors }}</div>
-{% endif %}
-{% endblock %}
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Register for an account" %}{% endblock %}
+{% load bootstrap %}
 
 {% block content %}
-<div class="col-xs-4">
-    <form action="{% url 'users:registration_register' %}" method="post">
+<form method="post" action=""
 
-      {% csrf_token %}
-      <input type="hidden" name="next" value="{% url 'home' %}" />
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    
+    <input type="submit" value="{% trans 'Zopa' %}" />
+</form>
+{% endblock %}
 
-      <div class="form-group">
-        <label for="login"></label>
-        <input type="text" class="form-control" id="login" value="" placeholder="Username"
-               name="username" />
-        <span class="help-block">{{ form.errors.username.as_text }}</span>
-      </div>
 
-      <div class="form-group">
-        <label for="email"></label>
-        <input type="text" class="form-control" id="email" value="" placeholder="Email"
-               name="email" />
-        <span class="help-block">{{ form.errors.email.as_text }}</span>
-      </div>
+{% comment %}
+**registration/registration_form.html**
+Used to show the form users will fill out to register. By default, has
+the following context:
 
-      <div class="form-group">
-        <label for="password"></label>
-        <input type="password" class="form-control" id="password" value="" placeholder="Password"
-               name="password1" />
-        <span class="help-block">{{ form.errors.password1.as_text }}</span>
-      </div>
-
-      <div class="form-group">
-        <label for="password-confirm"></label>
-        <input type="password" class="form-control" id="password-confirm" value="" placeholder="Confirm password"
-               name="password2" />
-        <span class="help-block">{{ form.errors.password2.as_text }}</span>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-</div>
-{% endblock content %}
+``form``
+    The registration form. This will be an instance of some subclass
+    of ``django.forms.Form``; consult `Django's forms documentation
+    <http://docs.djangoproject.com/en/dev/topics/forms/>`_ for
+    information on how to display this in a template.
+{% endcomment %}
