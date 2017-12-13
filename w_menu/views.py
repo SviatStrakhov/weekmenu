@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.sites.shortcuts import get_current_site
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.views.generic import TemplateView, ListView
