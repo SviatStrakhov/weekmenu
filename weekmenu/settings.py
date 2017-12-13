@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.sites',
-    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'user_auth',
+    'registration',
     'bootstrapform',
     'w_menu',
 ]
@@ -114,11 +114,12 @@ USE_L10N = True
 USE_TZ = True
 
 # DJANGO REGISTRATION REDUX SETTINGS
+ACCOUNT_ACTIVATION_DAYS = 3
 REGISTRATION_OPEN = True
 REGISTRATION_AUTO_LOGIN = True
 SITE_ID = 1
-# LOGIN_URL = 'users:auth_login'
-# LOGOUT_URL = 'users:auth_logout'
+LOGIN_URL = 'auth_login'
+LOGOUT_URL = 'auth_logout'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/

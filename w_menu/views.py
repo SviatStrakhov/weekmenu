@@ -99,7 +99,7 @@ class ShoppingProductNotesUpdateView(UpdateView):
 #         print('zopa')
 #     return render(request, 'base.html')
 
-
+@method_decorator(login_required, name='dispatch')
 class MenuView (ListView):
 
     template_name = 'menu.html'
