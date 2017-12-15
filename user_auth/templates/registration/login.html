@@ -39,4 +39,7 @@
     <button type="submit" class="btn btn-primary">Login</button>
   </form>
 </div>
+
+<p>Forgot your password?<a href="{% url 'auth_password_reset' %}"> Reset</a></p>
+<p>Don't have an account?<a href="{% url 'registration_register' %}"> Register</a></p>
 {% endblock content %}
