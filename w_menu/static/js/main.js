@@ -9,6 +9,7 @@ function finishProduct(){
 			async: true,
 			dataType: 'json',
 			data: {
+				'key': 'finish',
 				'pk': box.data('product-id'),
 				'submit': true,
 				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
@@ -22,6 +23,32 @@ function finishProduct(){
 
 $(document).ready(function(){
 	finishProduct();
+})
+
+function deletProdutDish(){
+    $('.available-box button[id="delete_product_btn"]').click(function(event){
+		var box = $(this);
+		var productToHide = box.parent().parent()
+        productToHide.hide()
+        $.ajax(box.data('url'), {
+            type: 'POST',
+            async: true,
+            dataType: 'json',
+            data: {
+				'key': 'delete',
+                'pk': box.data('product-id'),
+                'submit': true,
+                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
+            },
+            error: function(xhr, status, error){
+                alert('error');
+            },
+        });
+    });
+}
+
+$(document).ready(function(){
+	deletProdutDish();
 })
 
 function initProduct() {
@@ -49,22 +76,5 @@ $(document).ready(function(){
     initProduct();
 })
 
-function deletProdutDish() {
-    $('.available-box button[id="delete_product_btn"]').click(function(event){
-        var box = $(this);
-        $.ajax(box.data('url'), {
-            type: 'POST',
-            async: true,
-            dataType: 'json',
-            data: {
-                'pk': box.data('product-id'),
-                'submit': true,
-                'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
-            },
-            error: function(xhr, status, error){
-                alert('error');
-            },
-        });
-    });
-}
+
 

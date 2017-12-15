@@ -3,7 +3,7 @@
 <html lang="uk">
     <head>
         <meta charset="UTF-8"/>
-        <title>weekmenu{% block meta_title %}{% endblock meta_title %}</title>
+        <title>SelfCook{% block meta_title %}{% endblock meta_title %}</title>
         <meta name="description" value="weekmenu" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.min.css">
@@ -19,20 +19,20 @@
             <div class="row" id="header">
                 <!-- Logo -->
                 <div class="col-xs-6">
-                    <a href="{% url 'home'%}"><h1 id="logo">weekmenu</h1></a>
+                    <a href="{% url 'home'%}"><h1 id="logo">SelfCook</h1></a>
                 </div>
 
                 {% if user.is_authenticated %}
 
                 <div class="col-xs-2" id="user-toolbar">
                     <a href="{% url 'profile' %}"> {{ user.username }} </a>|
-                    <a href="{% url 'users:auth_logout' %}">Logout</a>
+                    <a href="{% url 'auth_logout' %}">Logout</a>
                 </div>
 
                 {% else %}
 
                 <div class="col-xs-6" id="user-toolbar">
-                    <a href="{% url 'users:auth_login' %}">Login</a> | <a href="{% url 'users:registration_register' %}">Registration</a>
+                    <a href="{% url 'auth_login' %}">Login</a> | <a href="{% url 'registration_register' %}">Registration</a>
                 </div>
 
                 {% endif %}
@@ -66,7 +66,7 @@
 
             <!-- Start Footer -->
             <div class="row" id="footer">
-                <div class="col-xs-12">&copy; 2017 WeekMenu</div>
+                <div class="col-xs-12">&copy; 2017 SelfCook</div>
             </div>
         </div>
 

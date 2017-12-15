@@ -21,7 +21,7 @@ from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView, TemplateView
 urlpatterns = [
 
-    url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^$', ShoppingListView.as_view(), name='home'),
     url(r'^shopping_list/$', ShoppingListView.as_view(), name='shopping_list'),
     url(r'^shopping_list/(?P<pk>\d+)/notes/edit$', ShoppingProductNotesUpdateView.as_view(),
         name='shopping_list_product_edit'),
@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^products/$', ProductsListView.as_view(), name='products'),
     url(r'^products/(?P<pk>\d+)/notes/edit$', ProductNotesUpdateView.as_view(), name='product_notes_edit'),
     url(r'^products/add_product/$', ProductCreate.as_view(), name='add_product'),
+    url(r'^products/(?P<pk>\d+)/delete_product/$', ProductDeleteView.as_view(), name='product_delete'),
 
     url(r'^menu/$', MenuView.as_view(), name='menu'),
     url(r'^menu/dish/add/$', DishCreate.as_view(), name='add_dish'),
@@ -37,9 +38,9 @@ urlpatterns = [
     # related urls
     url(r'^users/profile/$', login_required(TemplateView.as_view(template_name='registration/profile.html')),
         name='profile'),
-    url(r'^users/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
-    url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
-    url(r'^users/', include('registration.backends.simple.urls', namespace='users')),
+    url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
+    # url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 
     # admin urls
     url(r'^admin/', admin.site.urls),

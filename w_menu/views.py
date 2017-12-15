@@ -31,10 +31,13 @@ class ProductsListView(ListView):
 
     def post(self, request, *args, **kwargs):
         data = request.POST
-        product = Product.objects.get(pk=data['pk'])
-        product.available = False
-        product.save()
-
+        if data['key'] == 'finish':
+            product = Product.objects.get(pk=data['pk'])
+            product.available = False
+            product.save()
+        if data['key'] == 'delete':
+            product = Product.objects.get(pk=data['pk'])
+            product.delete()
         return JsonResponse({'status': 'success'})
 
 
@@ -76,6 +79,16 @@ class ProductNotesUpdateView(UpdateView):
     success_url = '/products'
 
 
+class ProductDeleteView(DeleteView):
+
+    model = Product
+    template_name = 'students/students_confirm_delete.html'
+
+    def get_success_url(self):
+        return u'%s?status_message=Студента успішно видалено!' \
+               % reverse('home')
+
+
 class ShoppingProductNotesUpdateView(UpdateView):
 
     model = Product
@@ -100,7 +113,7 @@ class ShoppingProductNotesUpdateView(UpdateView):
 #         print('zopa')
 #     return render(request, 'base.html')
 
-
+@method_decorator(login_required, name='dispatch')
 class MenuView (ListView):
 
     template_name = 'menu.html'
@@ -131,6 +144,4 @@ class DishCompositionView(ListView):
         context['data'] = data
         return context
 
-    def post(self, request, *args, **kwargs):
-        data = request.POST
 

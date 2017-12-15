@@ -22,7 +22,10 @@
         <tr>
             <td><a title="" href="{% url 'product_notes_edit' product.id %}"><h3>{{ product.title }}</h3></a></td>
             <td class="available-box">
-                <button type="button" id="finish_product_btn" data-product-id="{{ product.id }}" class="btn btn-danger">Finished</button>
+                <button type="button" id="finish_product_btn" data-product-id="{{ product.id }}" class="btn btn-primary">Finished</button>
+            </td>
+            <td class="available-box">
+                <button type="button" id="delete_product_btn" data-product-id="{{ product.id }}" class="btn btn-danger">Del</button>
             </td>
         </tr>
         {% endfor %}
