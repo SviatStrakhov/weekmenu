@@ -1,10 +1,7 @@
+
 from django.db import models
 
-# Create your models here.
-from django.db import models
 
-
-# Create your models here.
 class Product(models.Model):
     
     class Meta(object):
@@ -23,6 +20,29 @@ class Product(models.Model):
         verbose_name='available'
     )
 
+    notes = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='notes'
+    )
+
+    def __str__(self):
+        return f'{self.title}'
+
+
+class ProductDeleted(models.Model):
+
+    class Meta(object):
+
+        verbose_name = 'DeletedProduct'
+        verbose_name_plural = 'DeletedProducts'
+
+    title = models.CharField(
+        max_length=256,
+        blank=True,
+        unique=True,
+        verbose_name='title'
+    )
     notes = models.TextField(
         blank=True,
         null=True,
@@ -52,12 +72,17 @@ class Dish(models.Model):
         blank=True,
         verbose_name='title'
     )
-    
+
+    recipe = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name='recipe'
+    )
+
     def __str__(self):
         return f'{self.title}'
 
 
-# don't migrated Menu
 class Menu(models.Model):
 
     class Meta(object):

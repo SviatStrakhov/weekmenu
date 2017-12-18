@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 
-from .models import Dish, Product
+from .models import Dish, Product, ProductDeleted
 
 
 @method_decorator(login_required, name='dispatch')
@@ -31,12 +31,15 @@ class ProductsListView(ListView):
 
     def post(self, request, *args, **kwargs):
         data = request.POST
-        if data['key'] == 'finish':
+        if data['action'] == 'finish':
             product = Product.objects.get(pk=data['pk'])
             product.available = False
             product.save()
-        if data['key'] == 'delete':
+        if data['action'] == 'delete':
             product = Product.objects.get(pk=data['pk'])
+            print(product.title, product.available)
+            delete_product = ProductDeleted.objects.create(title=product.title, notes=product.notes)
+            print(delete_product)
             product.delete()
         return JsonResponse({'status': 'success'})
 

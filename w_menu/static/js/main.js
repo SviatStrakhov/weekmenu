@@ -9,7 +9,7 @@ function finishProduct(){
 			async: true,
 			dataType: 'json',
 			data: {
-				'key': 'finish',
+				'action': 'finish',
 				'pk': box.data('product-id'),
 				'submit': true,
 				'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
@@ -35,7 +35,7 @@ function deletProdutDish(){
             async: true,
             dataType: 'json',
             data: {
-				'key': 'delete',
+				'action': 'delete',
                 'pk': box.data('product-id'),
                 'submit': true,
                 'csrfmiddlewaretoken': $('input[name="csrfmiddlewaretoken"]').val()
