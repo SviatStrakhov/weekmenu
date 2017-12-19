@@ -40,7 +40,6 @@ class ProductDeleted(models.Model):
     title = models.CharField(
         max_length=256,
         blank=True,
-        unique=True,
         verbose_name='title'
     )
     notes = models.TextField(

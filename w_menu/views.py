@@ -37,9 +37,15 @@ class ProductsListView(ListView):
             product.save()
         if data['action'] == 'delete':
             product = Product.objects.get(pk=data['pk'])
-            print(product.title, product.available)
-            delete_product = ProductDeleted.objects.create(title=product.title, notes=product.notes)
-            print(delete_product)
+            print(product.title)
+            # del_product = ProductDeleted.objects.get_or_create(title=product.title, notes=product.notes)
+            # print(del_product)
+            if ProductDeleted.objects.filter(title=product.title).exists():
+                pass
+            else:
+                delete_product = ProductDeleted.objects.create(title=product.title, notes=product.notes)
+                # delete_product = ProductDeleted.objects.create(title=product.title, notes=product.notes)
+                print(delete_product)
             product.delete()
         return JsonResponse({'status': 'success'})
 
