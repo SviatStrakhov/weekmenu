@@ -41,6 +41,7 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth_views.logout, kwargs={'next_page': 'home'}, name='auth_logout'),
     # url(r'^register/complete/$', RedirectView.as_view(pattern_name='home'), name='registration_complete'),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
 
     # admin urls
     url(r'^admin/', admin.site.urls),

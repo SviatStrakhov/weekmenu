@@ -17,6 +17,7 @@
 
 {% block content %}
 <div class="col-xs-4">
+  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a><br>
   <form action="#" method="post">
 
     {% csrf_token %}
