@@ -25,7 +25,7 @@ $(document).ready(function(){
 	finishProduct();
 })
 
-function deletProdutDish(){
+function deleteProductDish(){
     $('.available-box button[id="delete_product_btn"]').click(function(event){
 		var box = $(this);
 		var productToHide = box.parent().parent()
@@ -48,7 +48,7 @@ function deletProdutDish(){
 }
 
 $(document).ready(function(){
-	deletProdutDish();
+	deleteProductDish();
 })
 
 function initProduct() {

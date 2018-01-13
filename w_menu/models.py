@@ -2,6 +2,24 @@
 from django.db import models
 
 
+class ProductCategory(models.Model):
+
+    class Meta(object):
+
+        verbose_name = 'Product category'
+        verbose_name_plural = 'Product categories'
+
+    category = models.CharField(
+        max_length=256,
+        blank=True,
+        null=True,
+        verbose_name='Category'
+    )
+
+    def __str__(self):
+        return f'{self.category}'
+
+
 class Product(models.Model):
     
     class Meta(object):
@@ -18,6 +36,12 @@ class Product(models.Model):
 
     available = models.BooleanField(
         verbose_name='available'
+    )
+
+    category = models.ForeignKey(ProductCategory,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
     )
 
     notes = models.TextField(
@@ -52,6 +76,24 @@ class ProductDeleted(models.Model):
         return f'{self.title}'
 
 
+class DishCategory(models.Model):
+
+    class Meta(object):
+
+        verbose_name = 'Dish category'
+        verbose_name_plural = 'Dish categories'
+
+    category = models.CharField(
+        max_length=256,
+        blank=True,
+        null=True,
+        verbose_name='Category'
+    )
+
+    def __str__(self):
+        return f'{self.category}'
+
+
 class Dish(models.Model):
     
     class Meta(object):
@@ -71,6 +113,12 @@ class Dish(models.Model):
         blank=True,
         verbose_name='title'
     )
+
+    category = models.ForeignKey(DishCategory,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL
+        )
 
     recipe = models.TextField(
         blank=True,
